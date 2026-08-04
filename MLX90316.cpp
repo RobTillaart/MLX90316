@@ -38,7 +38,7 @@ bool MLX90316::begin()
   pinMode(_select, OUTPUT);
   digitalWrite(_select, HIGH);
 
-  //  SPI_MODE1 => see email Benito
+  //  SPI_MODE1 ==> CPHA = 1, CPOL = 0
   _spi_settings = SPISettings(_SPIspeed, MSBFIRST, SPI_MODE1);
 
   if(_hwSPI)
@@ -108,6 +108,13 @@ uint32_t MLX90316::getSPIspeed()
 bool MLX90316::usesHWSPI()
 {
   return _hwSPI;
+}
+
+
+//  DEBUG
+uint16_t MLX90316::getStatus()
+{
+  return mlx;
 }
 
 

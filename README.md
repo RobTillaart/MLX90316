@@ -25,7 +25,13 @@ MLX90316 is a library for the **MLX90316** rotation encoder.
 This devices decodes 360.0° in 16384 steps which implies an accuracy
 of about 0.022°.
 
-The angle is calculated every 350 μs, so 2850 times per second. TODO CHECK
+
+The MLX90316 is capable of much more, this might be implemented in a later
+version of the library.
+
+The angle is calculated every 200 μs, so 5000 times per second.
+
+TODO CHECK details.
 
 As the device can handle up to 800 rpm = 75 milliseconds per rotation.
 To have a fair indication of rpm and direction one has to sample
@@ -107,6 +113,13 @@ need to read the device far more often.
 - **void setSPIspeed(uint32_t speed)** idem, clipped to max 2 MHz.
 - **uint32_t getSPIspeed()** idem.
 - **bool usesHWSPI()** idem.
+
+
+### Debug
+
+- **uint16_t getStatus()** return last status bytes.
+
+TODO explain bits.
 
 
 ## Future

@@ -52,6 +52,8 @@ public:
   uint32_t getSPIspeed();
   bool     usesHWSPI();
 
+  //  DEBUG
+  uint16_t getStatus();
 
 private:
   uint8_t  _select;
