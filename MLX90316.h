@@ -66,7 +66,7 @@ private:
 
   //  SPI
   bool     _hwSPI;
-  uint32_t _SPIspeed = 1000000;
+  uint32_t _SPIspeed = 100000;  //  150 kbps max.
 
   uint16_t readDevice();
   uint8_t  SWSPI_byte(uint8_t data);
