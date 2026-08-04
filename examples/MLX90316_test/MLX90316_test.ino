@@ -32,7 +32,9 @@ void loop()
   uint16_t position = re.getRawValue();
   Serial.print(millis());
   Serial.print("\t");
-  Serial.println(position);
+  Serial.print(position);
+  Serial.print("\t");
+  Serial.println(re.getStatus());
   delay(50);
 }
 
