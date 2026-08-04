@@ -42,10 +42,17 @@ Feedback as always, is welcome. Please open an issue.
 
 _library is based upon ERCFS library, so some artefacts may exist_
 
+_sponsoring hardware is also welcome_
+
 
 ### Hardware
 
 TODO:
+
+### Compatibles
+
+The ERCKS rotary encoder looks compatible. 
+To be confirmed with testing.
 
 
 ### Related
