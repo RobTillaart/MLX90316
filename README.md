@@ -16,38 +16,65 @@ Arduino library for SPI based MLX90316 rotary encoder.
 
 ## Description
 
-**Experimental**
+**Experimental - work in progress**
 
 **Warning:** This library is not tested with hardware yet.
 So use with care, feedback welcome.
 
-MLX90316 is a library for the **MLX90316** rotation encoder.
-This devices decodes 360.0° in 16384 steps which implies an accuracy
-of about 0.022°.
-
+MLX90316 is a library for the (SPI) **MLX90316** rotation encoder.
+The SPI version of the device decodes 360.0° in 14 bit = 16384 steps 
+which implies an accuracy of about 0.022° in theory.
 
 The MLX90316 is capable of much more, this might be implemented in a later
 version of the library.
 
-The angle is calculated every 200 μs, so 5000 times per second.
-
-TODO CHECK details.
-
-As the device can handle up to 800 rpm = 75 milliseconds per rotation.
-To have a fair indication of rpm and direction one has to sample
-4 times so roughly once every 20 ms.
-
 Feedback as always, is welcome. Please open an issue.
 
+_library is based upon the ERCFS library, so some artefacts may exist_
 
-_library is based upon ERCFS library, so some artefacts may exist_
-
-_sponsoring hardware is also welcome_
+_sponsoring for hardware is welcome_
 
 
 ### Hardware
 
-TODO:
+To elaborate.
+
+### Types
+
+|  type     |  specification  |  bits  |  Lib  |  notes  |
+|:---------:|:----------------|:------:|:-----:|:--------|
+|  xxx-000  |  standard (?)   |        |   N   |
+|  xxx-100  |  SPI            |   14   |   Y   |
+|  xxx-102  |  SPI75AGC       |        |   N   |
+|  xxx-200  |  PPA = Analog   |   12   |   N   |  ?
+|  xxx-300  |  PPD = digital  |   12   |   N   |  PWM
+
+
+Temperature range of different device types.
+
+|  code  |  range °C    |  notes  |
+|:------:|:------------:|:--------|
+|   S    |  -20 .. 85   |
+|   E    |  -40 .. 85   |
+|   K    |  -40 .. 125  |
+|   L    |  -40 .. 150  |
+
+
+### Performance
+
+(details datasheet page 12)
+
+The device can work in two modi, fast (600 us) and slow (4 ms).
+So the angle could be calculated every 600 μs, so in theory 1600 samples 
+per second.
+
+As minimal 3 samples per rotation are needed (to have both direction and 
+speed) this could in theory track 500 rps = 30000 RPM. 
+In practice expect a factor 10 lower so up to 3000 RPM should be feasible.
+3000 RPM is roughly 150-200 samples per second.
+
+To elaborate: SPI time.
+
 
 ### Compatibles
 
@@ -82,9 +109,9 @@ Related rotary decoder libraries
 
 ### Tested
 
-TODO:
+To elaborate with hardware.
 
-### Please report your experiences.
+#### Please report your experiences.
 
 If you have a MLX90316 device, please let me know your experiences
 with the sensor and this (or other) library.
@@ -126,7 +153,7 @@ need to read the device far more often.
 
 - **uint16_t getStatus()** return last status bytes.
 
-TODO explain bits.
+TODO explain the bits of the status bytes. (table).
 
 
 ## Future
@@ -135,6 +162,7 @@ TODO explain bits.
 
 - improve documentation
 - get hardware to test
+  - ERCKS
 
 #### Should
 
